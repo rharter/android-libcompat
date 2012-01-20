@@ -1,9 +1,9 @@
-package com.ryanharter.android.tasks.ui;
+package com.ryanharter.android.compat.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import com.ryanharter.android.tasks.R;
+import com.ryanharter.android.compat.R;
 
 /**
  * A {@link BaseActivity} that simply contains a single fragment.  The intent used to invoke 

@@ -1,4 +1,4 @@
-package com.ryanharter.android.tasks.util;
+package com.ryanharter.android.compat.util;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,16 +13,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.ryanharter.android.tasks.R;
+import com.ryanharter.android.compat.R;
 
 public class ActivityHelper {
 	protected Activity mActivity;
 	
 	public static ActivityHelper createInstance(Activity activity) {
-		return new ActivityHelper(activity);
-		// return UIUtils.isHoneycomb() ?
-		//		new ActivityHelperHoneycomb(activity) :
-		//		new ActivityHelper(activity);
+		return UIUtils.isHoneycomb() ?
+				new ActivityHelperHoneycomb(activity) :
+				new ActivityHelper(activity);
 	}
 	
 	protected ActivityHelper(Activity activity) {

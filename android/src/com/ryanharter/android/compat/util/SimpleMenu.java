@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ryanharter.android.tasks.util;
+package com.ryanharter.android.compat.util;
 
 import android.content.ComponentName;
 import android.content.Context;

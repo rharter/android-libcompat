@@ -1,4 +1,13 @@
-package com.ryanharter.android.tasks.ui;
+package com.ryanharter.android.compat.ui;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import com.ryanharter.android.compat.util.ActivityHelper;
 
 public abstract class BaseActivity extends FragmentActivity {
 	final ActivityHelper mActivityHelper = ActivityHelper.createInstance(this);

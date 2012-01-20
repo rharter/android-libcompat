@@ -1,6 +1,8 @@
 package com.ryanharter.android.compat.util;
 
 import android.graphics.Color;
+import android.os.Build;
+import android.content.res.Configuration;
 
 public class UIUtils {
 	

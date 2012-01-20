@@ -1,11 +1,11 @@
-package com.ryanharter.android.tasks.util;
+package com.ryanharter.android.compat.util;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.ryanharter.android.tasks.R;
+import com.ryanharter.android.compat.R;
 
 public class ActivityHelperHoneycomb extends ActivityHelper {
 	private Menu mOptionsMenu;
