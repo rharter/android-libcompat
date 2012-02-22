@@ -1,6 +1,7 @@
 package com.ryanharter.android.compat.util;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -17,6 +18,12 @@ import com.ryanharter.android.compat.R;
 
 public class ActivityHelper {
 	protected Activity mActivity;
+	
+	/**
+	 * The {@code Class} of the activity that should be returned
+	 * to when the user presses the home button.
+	 */
+	protected static Class sHomeActivityClass;
 	
 	public static ActivityHelper createInstance(Activity activity) {
 		return UIUtils.isHoneycomb() ?
@@ -40,7 +47,6 @@ public class ActivityHelper {
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
-		//mActivity.getMenuInflater().inflate(R.menu.default_menu_items, menu);
 		return false;
 	}
 	
@@ -57,10 +63,19 @@ public class ActivityHelper {
 	
 	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			// goHome();
-			// return true;
+			goHome();
 		}
 		return false;
+	}
+	
+	/**
+	 * To be called in <code>onCreate</code> of the home activity
+	 * or any intermediary activity wishing to override the home 
+	 * button to tell other activities which activity to navigate 
+	 * to when home is pressed in the action bar.
+	 */
+	public void setHomeActivity(Class homeActivityClass) {
+		sHomeActivityClass = homeActivityClass;
 	}
 	
 	/**
@@ -68,18 +83,35 @@ public class ActivityHelper {
      * home activity for the app.
      */
 	public void setupHomeActivity() {
-		
 	}
 	
 	/**
      * Method, to be called in <code>onPostCreate</code>, that sets up this activity as a
      * sub-activity in the app.
      */
-    public void setupSubActivity() {
-    }
+	public void setupSubActivity() {
+	}
+	
+	/**
+	 * Invoke "home" action, returning to sHomeActivityClass.
+	 */
+	public void goHome() {
+		if (sHomeActivityClass == null || 
+				sHomeActivityClass.isInstance(mActivity)) {
+			return;
+		}
+		
+		final Intent intent = new Intent(mActivity, sHomeActivityClass);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		mActivity.startActivity(intent);
+		
+		if (!UIUtils.isHoneycomb()) {
+			mActivity.overridePendingTransition(R.anim.home_enter, R.anim.home_exit);
+		}
+	}
 
 	/**
-	 * Sets up the action bar with the fiven title and accent color.  If title is null, then
+	 * Sets up the action bar with the given title and accent color.  If title is null, then
 	 * the app logo will be shown instead of a title.  Otherwise, a home button and title are
 	 * visible. If a color is null, then the default colorstrip is visible.
 	 */
@@ -95,7 +127,7 @@ public class ActivityHelper {
 		
 		View.OnClickListener homeClickListener = new View.OnClickListener() {
 			public void onClick(View view) {
-				// goHome();
+				goHome();
 			}
 		};
 		
@@ -117,7 +149,7 @@ public class ActivityHelper {
 			actionBarCompat.addView(logo);
 			
 			// Add sptring (dummy view to align future children to the right)
-			View string = new View(mActivity);
+			View spring = new View(mActivity);
 			spring.setLayoutParams(springLayoutParams);
 			actionBarCompat.addView(spring);
 		}
@@ -133,12 +165,12 @@ public class ActivityHelper {
 			return;
 		}
 		
-		final View colorstrip = mActivity.findViewById(R.id.colorstrip);
-		if (colorstrip == null) {
-			return;
-		}
-		
-		colorstrip.setBackgroundColor(color);
+		// final View colorstrip = mActivity.findViewById(R.id.colorstrip);
+		// if (colorstrip == null) {
+		// 	return;
+		// }
+				// 
+				// colorstrip.setBackgroundColor(color);
 	}
 	
 	/**

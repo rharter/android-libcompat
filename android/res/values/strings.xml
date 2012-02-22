@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ACTIVITY_ENTRY_NAME</string>
+    <string name="description_home">Home</string>
+	<string name="description_search">Search</string>
+	<string name="description_refresh">Refresh</string>
 </resources>

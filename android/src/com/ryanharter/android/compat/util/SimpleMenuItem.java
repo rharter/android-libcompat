@@ -22,6 +22,8 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.MenuItem.OnActionExpandListener;
+import android.view.ActionProvider;
 
 /**
  * A <em>really</em> dumb implementation of the {@link MenuItem} interface, that's only useful for
@@ -193,6 +195,16 @@ public class SimpleMenuItem implements MenuItem {
         return this;
     }
 
+	public MenuItem setOnActionExpandListener(
+			OnActionExpandListener onActionExpandListener) {
+		// Noop
+		return this;
+	}
+	
+	public boolean isActionViewExpanded () {
+		return false;
+	}
+
     public ContextMenu.ContextMenuInfo getMenuInfo() {
         return null;
     }
@@ -211,4 +223,23 @@ public class SimpleMenuItem implements MenuItem {
         return this;
     }
 
+	public boolean collapseActionView () {
+		return true;
+	}
+	
+	public boolean expandActionView () {
+		return true;
+	}
+	
+	public ActionProvider getActionProvider () {
+		return null;
+	}
+
+	public MenuItem setActionProvider (ActionProvider actionProvider) {
+		return this;
+	}
+	
+	public MenuItem setShowAsActionFlags (int actionEnum) {
+		return this;
+	}
 }

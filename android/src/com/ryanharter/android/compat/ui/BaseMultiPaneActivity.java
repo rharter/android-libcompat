@@ -18,7 +18,7 @@ import android.support.v4.app.FragmentTransaction;
 public abstract class BaseMultiPaneActivity extends BaseActivity {
 	/** {@inheritDoc} */
 	@Override
-	public void openAcitvityOrFragment(final Intent intent) {
+	public void openActivityOrFragment(final Intent intent) {
 		final PackageManager pm = getPackageManager();
 		List<ResolveInfo> resolveInfoList = pm
 				.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
@@ -54,7 +54,7 @@ public abstract class BaseMultiPaneActivity extends BaseActivity {
 	 * class. Base activities should return a {@link FragmentReplaceInfo} if a fragment can
 	 * act in place of the given activity class name.
 	 */
-	protected FragmentReplaceInfo onSubstituteFragmentForAtivityLaunch(String activityClassName) {
+	protected FragmentReplaceInfo onSubstituteFragmentForActivityLaunch(String activityClassName) {
 		return null;
 	}
 	

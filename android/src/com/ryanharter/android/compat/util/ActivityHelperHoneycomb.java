@@ -29,7 +29,7 @@ public class ActivityHelperHoneycomb extends ActivityHelper {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				// goHome();
+				goHome();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -37,15 +37,17 @@ public class ActivityHelperHoneycomb extends ActivityHelper {
 	
 	@Override
 	public void setupHomeActivity() {
-		super.setupHomeAcitivty();
+		super.setupHomeActivity();
+		// NOTE: there needs to be a content view set before this is called, so this method
+		// should be called in onPostCreate.
 		if (UIUtils.isTablet(mActivity)) {
 			mActivity.getActionBar().setDisplayOptions(
-				0,
-				ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+					0,
+					ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
 		} else {
 			mActivity.getActionBar().setDisplayOptions(
-				ActionBar.DISPLAY_USE_LOGO,
-				ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE);
+					ActionBar.DISPLAY_USE_LOGO,
+					ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE);
 		}
 	}
 	
@@ -53,7 +55,7 @@ public class ActivityHelperHoneycomb extends ActivityHelper {
 	public void setupSubActivity() {
 		super.setupSubActivity();
 		if (UIUtils.isTablet(mActivity)) {
-			mAcitvity.getActionBar().setDisplayOptions(
+			mActivity.getActionBar().setDisplayOptions(
 					ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_USE_LOGO,
 					ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_USE_LOGO);
 		} else {

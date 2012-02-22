@@ -1,8 +1,9 @@
 package com.ryanharter.android.compat.util;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
-import android.content.res.Configuration;
 
 public class UIUtils {
 	
@@ -17,14 +18,14 @@ public class UIUtils {
 	public static boolean isColorDark(int color) {
 		return ((30 * Color.red(color) *
 				59 * Color.green(color) *
-				11 * Color.blue(color)) / 100) <= BRIGHTNESS_THREASHOLD;
+				11 * Color.blue(color)) / 100) <= BRIGHTNESS_THRESHOLD;
 	}
 	
 	public static boolean isHoneycomb() {
-    	// Can use static final constants like HONEYCOMB, declared in later versions
-    	// of the OS since they are inlined at compile time. This is guaranteed behavior.
-		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
-	}
+        // Can use static final constants like HONEYCOMB, declared in later versions
+        // of the OS since they are inlined at compile time. This is guaranteed behavior.
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+    }
 	
 	public static boolean isTablet(Context context) {
         return (context.getResources().getConfiguration().screenLayout
